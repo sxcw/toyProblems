@@ -1,3 +1,296 @@
+//
+// -----***********----------***********-----
+//
+// Character Sum
+// Given a string of arbitrary size, convert each character into its integer equivalent and sum the entirety.
+
+function charSum (str) {
+	var strArr = [];
+	var total = 0;
+	for (var i = 0 ; i <str.length; i++){
+		strArr.push(Number(str[i]));
+		if(strArr[i] > 0) {
+			total += strArr[i];
+		}
+	}
+	return total;
+}
+charSum("123cool!");
+
+
+function charSum (str) {
+	var strArr = [];
+	var total = 0;
+	for (var i = 0 ; i <str.length; i++){
+		strArr.push(Number(str[i]));
+		if(isNaN(strArr[i])) {
+			strArr[i] = 0;
+		}
+		total += strArr[i];
+
+	}
+	return total;
+}
+charSum("123cool!");
+
+
+
+function charSum (str) {
+	var patt1 = /^[0-9]*$/g;
+	console.log(patt1);
+	var num = str.replace(patt1," ");
+	console.log(num);
+}
+charSum("123cool!");
+
+//
+// -----***********----------***********-----
+//
+
+// Bubble Sort
+// Bubble sort is considered the most basic sorting algorithm in Computer Science. It works by starting at the first element of an array and comparing it to the second element:
+
+// If the first element is greater than the second element, it swaps the two.
+// It then compares the second to the third, and the third to the fourth, and so on.
+// In this way, the largest values ‘bubble’ to the end of the array.
+// Once it gets to the end of the array, it starts over and repeats the process until the array is sorted numerically.
+// Implement a function that takes an array and sorts it using this technique.
+
+// NOTE: DO NOT use JavaScript’s built-in sorting function (Array.prototype.sort).
+var bubbleSort = function(array) {
+	var temp1 = 0,temp2 = 0, isSorted = true;
+
+	for (var i = 0; i < array.length; i++) {
+		if (array[i] > array[i+1]){
+			isSorted = false;
+			temp1 = array[i];
+			temp2 = array[i+1]
+			array[i+1] = temp1;
+			array[i] = temp2;
+		}
+	}
+	if(isSorted === false) {
+		bubbleSort();
+	}
+	return array;
+}
+bubbleSort([20, -10, -10, 2, 4, 299]);
+
+
+
+//
+// -----***********----------***********-----
+//
+// Array Middle
+// Given an array of negative/positive integers, return the element in the center position of the array.
+
+// If the array has an even number of elements, return the average of the two middle elements instead.
+function middle (numbers) {
+	var index = Math.floor(numbers.length/2); 
+	if (numbers.length % 2 === 1){
+		return numbers[index];
+	} else {
+		return (numbers[index] + 
+		numbers[index-1]) /2; 
+	}
+
+}
+middle([ 200, 5, 10,100 ]);
+
+
+
+//
+// -----***********----------***********-----
+//
+
+// Array Max
+// Given an array of negative/positive integers, find the largest element. DO NOT use Math.max
+function max (numbers) {
+	var biggest = numbers.reduce(function(x,y){
+		if (x>y){
+			return x;
+		} else {
+			return y;
+		}
+	})
+	return biggest;
+}
+max ([ 20]);
+
+
+//
+// -----***********----------***********-----
+//
+//http://www.codewars.com/kata/remove-the-minimum
+//The museum of incredible dull things. The museum of incredible dull things wants to get rid of some exhibitions. Miriam, the interior architect, comes up with a plan to remove the most boring exhibitions. She gives them a rating, and then removes the one with the lowest rating. However, just as she finished rating all exhibitions, she's off to an important fair, so she asks you to write a program that tells her the ratings of the items after one removed the lowest one. Fair enough.
+
+// Task
+
+// Given an array of integers, remove the smallest value. If there are multiple elements with the same value, remove the one with a lower index. If you get an empty array/list, return an empty array/list.
+
+// Don't change the order of the elements that are left.
+
+// Examples
+
+// removeSmallest([1,2,3,4,5]) = [2,3,4,5]
+// removeSmallest([5,3,2,1,4]) = [5,3,2,4]
+// removeSmallest([2,2,1,2,1]) = [2,2,2,1]
+
+
+
+
+function removeSmallest(numbers) {
+	var min = 1;
+	for (var i = 0; i < numbers.length; i++){
+		if (min > numbers[i]){
+			min = numbers[i];
+		}
+	}
+	numbers.splice(numbers.indexOf(min),1);
+	return numbers;
+}
+removeSmallest([1, 2, 3, 4, 5]);
+
+
+function removeSmallest(numbers) {
+	var min = Math.min.apply(Math,numbers);
+	numbers.splice(numbers.indexOf(min),1);
+	return numbers;
+}
+removeSmallest([1, 2, 3, 4, 5]);
+
+
+// useful resource:  http://stackoverflow.com/questions/1986896/what-is-the-difference-between-call-and-apply
+
+function theFunction(name, profession) {
+    console.log("My name is " + name + " and I am a " + profession + ".");
+}
+theFunction("John", "fireman");
+theFunction.apply(undefined, ["Susan", "school teacher"]);
+theFunction.call(undefined, "Claude", "mathematician");
+
+// My name is John and I am a fireman.
+// My name is Susan and I am a school teacher.
+// My name is Claude and I am a mathematician.
+
+
+
+//
+// -----***********----------***********-----
+//
+//http://www.codewars.com/kata/the-coupon-code
+//Your online store likes to give out coupons for special occasions. Some customers try to cheat the system by entering invalid codes or using expired coupons.
+
+// Your mission: 
+// Write a function called checkCoupon to verify that a coupon is valid and not expired. If the coupon is good, return true. Otherwise, return false.
+
+// A coupon expires at the END of the expiration date. All dates will be passed in as strings in this format: "June 15, 2014"
+function checkCoupon(enteredCode, correctCode, currentDate, expirationDate){
+  return enteredCode === correctCode ? (
+  		Date.parse(currentDate) < Date.parse(expirationDate)? true : false
+  	):(
+  	false);
+}
+
+
+checkCoupon('123','123','September 5, 2014','October 1, 2014')
+
+
+function checkCoupon(enteredCode, correctCode, currentDate, expirationDate){
+  if(enteredCode === correctCode){
+  	if (Date.parse(currentDate) < Date.parse(expirationDate)){
+  		return true;
+  	} else {
+  		return false;
+  	}
+  } else {
+  	return false;
+  }
+}
+checkCoupon('123a','123','September 5, 2014','October 1, 2014');
+
+
+//
+// -----***********----------***********-----
+//
+//http://www.codewars.com/kata/list-to-array
+// Lists are data structures composed of nested objects, each containing a single value and a reference to the next object.
+
+// Here's an example of a list in JavaScript:
+
+// {value: 1, next: {value: 2, next: {value: 3, next: null}}}
+// In Python, lists will be represented by a preloaded LinkedList class with the members value and next. Here's an example:
+
+// LinkedList(1, LinkedList(2, LinkedList(3)))
+// Write a function listToArray (or list_to_array in Python) that converts a list to an array, like this:
+
+// [1, 2, 3]
+// Assume all inputs are valid lists with at least one value. For the purpose of simplicity, all values will be either numbers, strings, or Booleans.
+function listToArray(list) {
+	var results = [];
+	for (var key in list) {
+		if (typeof list[key] === "number"){
+			results.push(list[key]);
+		} else {
+			results = results.concat(listToArray(list[key]));
+		}
+	}
+	console.log(results);
+ 	return results;
+}
+listToArray({value: 1, next: {value: 2, next: {value: 3, next: null}}}
+)
+
+// (double)
+// single linked list
+// guai's solution
+function listToArray(list) {
+	var results = [];
+	var currNode = list;
+	while (currNode["next"] != null) {
+		results.push(currNode["value"]);
+		currNode = currNode["next"];
+	}
+	results.push(currNode["value"]);
+	return results;
+}
+
+var node3 = {value: 3, next: null};
+var node2 = {value: 2, next: node3};
+var node1 = {value: 1, next: node2};
+listToArray2(node1);
+
+// original way, not recommended, unnecessary complexity 
+function listToArray(list) {
+	var results = [];
+	for (var key in list) {
+		if (typeof list[key] === "number"){
+			results.push(list[key]);
+		} else {
+			results = results.concat(listToArray(list[key]));
+		}
+	}
+	console.log(results);
+ 	return results;
+}
+listToArray({value: 1, next: {value: 2, next: {value: 3, next: null}}}
+)
+
+// other solution
+function listToArray(list) {
+  var array = [];
+  for (var node = list; node; node = node.next)
+    array.push(node.value);
+  return array;
+}
+function listToArray(list) {
+  let res = [];
+  do {
+    res.push(list.value);
+  } while (list = list.next);
+  return res;
+}
+
 
 //
 // -----***********----------***********-----
@@ -133,17 +426,32 @@ function GetSum( a,b ){
 	} else if (b > a){
 		for (var i = a; i <=  b ; i++){
 			total += i;
-		}
-		return total;
+		}		
 	} else {
 		for (var i = b; i <=  a ; i++){
 			total += i;
 		}
 	}
+	return total;
 }
 GetSum((0,-1),-1);  
 
+//other solution 
 
+function GetSum( a,b )
+{
+   if (a == b) return a;
+   else if (a < b) return a + GetSum(a+1, b);
+   else return a + GetSum(a-1,b);
+}
+
+GetSum(2,5); 
+
+const GetSum = (a, b) => {
+  let min = Math.min(a, b),
+      max = Math.max(a, b);
+  return (max - min + 1) * (min + max) / 2;
+}
 
 //
 // -----***********----------***********-----
