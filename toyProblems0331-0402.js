@@ -5,6 +5,19 @@
 // Given a string of arbitrary size, convert each character into its integer equivalent and sum the entirety.
 
 function charSum (str) {
+	var results = [];
+	var total = 0;
+	for (var i=0; i < str.length; i++){
+		if ( Number(str[i]) > 0) {
+			total += Number(str[i]);
+		}	
+	}
+	return total;
+}
+charSum("123cool!");
+
+
+function charSum (str) {
 	var strArr = [];
 	var total = 0;
 	for (var i = 0 ; i <str.length; i++){
