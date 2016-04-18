@@ -442,3 +442,23 @@ function DivisionStringified(num1,num2) {
 }
 
 DivisionStringified(503394930,43);
+
+
+
+function divisionStringified2(num1, num2) {
+	var currValue = Math.round(num1 / num2);
+	var result = "";
+	var count = 0;
+	while (currValue > 0) {
+		if (count == 3) {
+			result = "," + result;
+			count = 0;
+		}
+		result = (currValue % 10) + result;
+		currValue = Math.floor(currValue / 10);
+		count++
+	}
+	return result;
+}
+
+divisionStringified2(503394930,43);

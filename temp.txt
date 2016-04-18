@@ -675,28 +675,7 @@ var players = [{
 // -----***********----------***********-----
 //
 
-function isPalingram (str){
-	var strObj = {};
-	var oddCount = [];
-	for(var i = 0; i <str.length; i++){
-		if (strObj[str[i]] === undefined){
-			strObj[str[i]] = 1;
-		} else {
-			strObj[str[i]]++;
-		}		
-	}
-	for (var key in strObj){
-		if (strObj[key] %2 !== 0) {
-			oddCount.push (strObj[key]);
-		}
-	}
-	if (oddCount.length > 1) {
-		return false;
-	}
-	return true;
-}
 
-isPalingram("aabbst");
 
 // MAP
 // ===
@@ -789,3 +768,827 @@ getLowestEWI(players);
 
 
 
+function isPalingram (str){
+	var strObj = {};
+	var oddCount = [];
+	for(var i = 0; i <str.length; i++){
+		if (strObj[str[i]] === undefined){
+			strObj[str[i]] = 1;
+		} else {
+			strObj[str[i]]++;
+		}		
+	}
+	for (var key in strObj){
+		if (strObj[key] %2 !== 0) {
+			oddCount.push (strObj[key]);
+		}
+	}
+	if (oddCount.length > 1) {
+		return false;
+	}
+	return true;
+}
+
+isPalingram("aabbst");
+
+
+
+function paligram(string) {
+  var newStr = string.toLowerCase().split('');
+  var result = {};
+  var tracker = 0;
+  
+  for(var i = 0; i < newStr.length; i++) {
+     // go thru each letter in array and append to obj
+  }
+  
+  reduce(result, function(acc, cur) {
+    if (cur % 2 === 1) {
+      tracker++
+    }
+    if(tracker > 1) {
+     return false
+    }
+    return true
+  }, true)
+}
+
+
+
+
+
+
+
+var each = function(collection, callback) {
+	if(Array.isArray(collection)){
+		for(var i=0; i<collection.length; i++){
+			callback(collection[i]);
+		}
+	} else {
+		for (var key in collection) {
+			callback(collection[key]);
+		}
+	}
+}
+
+var map = function(collection,callback){
+	var results = [];
+	each(collection,function(element){
+		results.push(callback(element));
+	})
+	return results;
+}
+
+map([1,2,3,4,5],function(value){
+	return value + 5;
+})
+
+var filter = function(collection, predicate){
+	var results=[];
+	each(collection, function(element){
+		if(predicate(element)){
+			results.push(element);
+		}
+	})
+	return results;
+}
+
+filter([1,2,3,4,5], function(value){
+	return value > 3;
+})
+
+var reduce = function(collection,accumulator,startValue){
+	each(collection,function(current){
+		if(startValue === undefined) {
+			startValue = current;
+		} else {
+			startValue = accumulator(startValue, current); 
+		}
+	})
+	return startValue; 
+}
+
+reduce([1,2,3,4,5],function(val1,val2){
+	return val1*val2; 
+})
+
+// COMPARE!! 
+var contains = function(collection,target) {
+	return reduce(collection, function(isFound, current){
+		if(current === target) {
+			isFound = true;
+		}
+		return isFound;
+	}, false)
+}
+contains([1,2,3,4,5], 3);
+
+// COMPARE!!!
+var contains = function(collection,target) {
+	return reduce(collection, function(isFound, current){
+		if(current === target) {
+			return true;
+		}
+		return false;
+	}, false)
+}
+contains([1,2,3,4,5], 3);
+
+
+
+
+
+var reduce = function(collection, accumulator,startValue){
+	each(collection, function(current){
+		if(startValue === undefined) {
+			startValue = current;
+		} else {
+			startValue = accumulator(startValue, current); 
+		}
+	})
+	return startValue;
+}
+
+reduce([1,2,3,4,5],function(val1,val2){
+	return val1+ val2;
+})
+
+var contains = function(collection,target) {
+	reduce(collection,function(checker,current){
+		if(current === target) {
+			checker = true; 
+		} 
+		return checker; 
+	},false)
+}
+
+
+var map = function(collection, callback){
+	var results= [];
+	each(collection, function(element){
+		results.push(callback(element));
+	})
+	return results;
+}
+
+var filter = function(collection,predicate){
+	var results= [];
+	each(collection, function(element){
+		if(predicate(element)){
+			results.push(elemet);
+		}
+	})
+	return results; 
+}
+
+
+
+
+
+
+
+
+
+
+
+var each = function(collection, callback){
+	if (Array.isArray(collection){
+		for(var i=0; i<collection.length; i++){
+			callback(collection[i]);
+		}
+	}) else {
+		for(var key in collection){
+			callback(collection[key]);
+		}
+	}
+}
+var map = function(collection,callback){
+	var results= [];
+	each(collection,function(element){
+		results.push(callback(element));
+	})
+	return results;
+}
+
+var filter = function(collection,predicate) {
+	var results= [];
+	each(collection,function(element){
+		if (predicate(element)) {
+			results.push(element);
+		}
+	})
+	return results;
+}
+
+var reduce = function(collection, accumulator, accValue) {
+	each(collection, function(currentValue){
+		if(accValue === undefined) {
+			accValue = currentValue;
+		} else {
+			accValue = accumulator(accValue,currentValue); 
+		}
+	})
+	return accValue;
+}
+
+var contains = function(collection, target) {
+	reduce(collection, function(accValue,currentValue){
+		if(currentValue === target){
+			accValue = true; 
+		}
+		return accValue; 
+	},false)
+}
+
+
+
+var each = function(collection, iterator){
+	if(Array.isArray(colleciton)) {
+		for (var i = 0; i< collection.length; i++){
+			iterator(collection[i], i, collection);
+		}
+	} else {
+		for(var key in collection) {
+			iterator(collection[key], key, collection);
+		}
+	}
+}	
+
+var indexOf = function(collection, target) {
+	var result = -1; 
+	var isFound = false;
+	each(collection,function(currentValue, index){
+		if(currentValue === target && isFound === false){
+			result = index; 
+			isFound = true;
+		}
+	})
+	return result; 
+}
+
+var lastIndexOf = function(array, target) {
+	var counter = -1;
+	return array.reduce(function(index,currentValue){
+		counter ++; 
+		if (currentValue === target) {
+			index = counter; 
+		}
+		return index;
+	},-1)
+}
+
+lastIndexOf([1,2,3,4,2],2); 
+
+
+var firstIndexOf= function(array,target) {
+	var counter= -1;
+	var isFound = false;
+	return array.reduce(function(index,currentValue){
+		counter ++;
+		if (currentValue === target && isFound === false){
+			index = counter; 
+			isFound= true;
+		}
+		return index;
+	},-1)
+}
+
+firstIndexOf([1,2,3,2], 2); 
+
+
+var each = function(collection, callback){
+	if (Array.isArray(collection)){
+		for(var i=0; i<collection.length; i++){
+			callback(collection[i]);
+		}
+	} else {
+		for(var key in collection){
+			callback(collection[key]);
+		}
+	}
+}
+var map = function(collection,callback){
+	var results= [];
+	each(collection,function(element){
+		results.push(callback(element));
+	})
+	return results;
+}
+
+var filter = function(collection,predicate) {
+	var results= [];
+	each(collection,function(element){
+		if (predicate(element)) {
+			results.push(element);
+		}
+	})
+	return results;
+}
+
+var reduce = function(collection, accumulator, accValue) {
+	each(collection, function(currentValue){
+		if(accValue === undefined) {
+			accValue = currentValue;
+		} else {
+			accValue = accumulator(accValue,currentValue); 
+		}
+	})
+	return accValue;
+}
+
+
+
+var isPalingram = function(str){
+	var strObj = {};
+	str.split("").forEach(function(letter){
+		if (strObj[letter] === undefined) {
+			strObj[letter] =1;
+		} else {
+			strObj[letter] ++;
+		}		
+	})
+	var count = 0;
+	return reduce(strObj,function(checker, currentValue){
+		if(currentValue % 2 !==0 ) {
+			count++;
+		}
+		if(count >= 2) {
+			checker = false;
+		}
+		return checker;
+	},true)
+
+
+}
+isPalingram ("aabbsf");
+
+function test() {
+	var boxarts = [
+			{ width: 200, height:200, url:"http://cdn-0.nflximg.com/images/2891/Fracture200.jpg" },
+			{ width: 150, height:200, url:"http://cdn-0.nflximg.com/images/2891/Fracture150.jpg" },
+			{ width: 300, height:200, url:"http://cdn-0.nflximg.com/images/2891/Fracture300.jpg" },
+			{ width: 425, height:150, url:"http://cdn-0.nflximg.com/images/2891/Fracture425.jpg" }
+		];
+
+	// You should return an array containing only the URL of the largest box art. Remember that reduce always
+	// returns an array with one item.
+	return boxarts.
+    reduce(function(accValue,currentValue){
+      if (accValue.width*accValue.height<currentValue.width * currentValue.height){
+      		accValue = currentValue;
+      }
+        return accValue;
+    
+    })["url"];
+}
+		
+test();
+
+
+function max (numbers) {
+	return numbers.reduce(function(greatest,current){
+		if(greatest < current){
+			greatest = current;
+		}
+		return greatest; 
+	})
+}
+max([20])
+
+
+function middle (numbers) {
+	var middle1 = Math.floor(numbers.length /2);
+	var middle2 = Math.floor(numbers.length /2)+1;
+	var count = -1;
+	if(numbers.length %2 === 0){
+		return (numbers[middle1] + numbers[middle2])/2;
+	}else {
+		return numbers[middle1];
+	}
+
+}
+//middle([200,5,100])
+middle([10,20,30,40])
+
+var bubbleSort = function(array) {
+	var temp1 = 0, temp2 =0;
+
+	for(var i =0; i<array.length; i++){
+		if(array[i] > array[i+1]) {
+			temp1 = array[i];
+			temp2 = array [i+1];
+			array[i] = temp2;
+			array[i+1] = temp1;
+		} 
+	}
+	return array;
+
+
+}
+bubbleSort([20, -10, -10, 2, 4, 299]);
+
+
+var bubbleSort = function(array) {
+	var sorted = [];
+	while(array[0] !== undefined){
+		var max = array.reduce(function(a,b){
+		return a>b? a :b; 
+		})
+		sorted.unshift(max);
+		var index = array.indexOf(max);
+		array.splice(index,1);
+	}
+	
+	return sorted;
+}
+
+bubbleSort([20, -10, -10, 2, 4, 299]);
+
+
+function charSum (str) {
+	var arr = str.replace(/[^0-9]/g,"").split("");
+	return arr.reduce(function(accValue,currentValue){
+		return Number(accValue) + Number(currentValue);
+	})
+}
+
+charSum("123");
+charSum("cool1")
+
+function longestImprovement (numbers) {
+	if (numbers.length === 1) {
+		return 1;
+	} else {
+		var count = 0;
+		numbers.reduce(function(accValue,currentValue){
+			if(accValue < currentValue) {
+				count ++;
+			}
+			return accValue; 
+		})
+	}
+}
+
+longestImprovement([10,20,30,10,20])
+
+
+
+
+function longestImprovement (numbers) {
+	if (numbers.length === 1) {
+		return 1;
+	} else {
+
+		var value = 0;
+		return numbers.reduce(function(count,currentValue){
+			if(value < currentValue) {
+				count ++;
+				value = currentValue;
+			}
+			return count;
+		},0)
+	}
+}
+
+longestImprovement([10,20,30,10,20])
+
+
+function longestImprovement (numbers) {
+
+		var value = 0;
+		return numbers.reduce(function(count,currentValue){
+			if(value < currentValue) {
+				count ++;
+				value = currentValue;
+			}
+			return count;
+		},0)
+}
+
+longestImprovement([10])
+
+
+function looper (len) {
+	var results =[];
+	for(var i= 0; i< len; i+=2){
+		results.push(i);
+	}
+	return results.map(function(ele){
+		return ele *3;
+	})
+}
+
+looper(100)
+
+
+function firstNonRepeatedCharacter (string) {
+	// create an object
+	// look for those with 1 as value
+	// return first match
+
+	var strObj = {};
+	var result = [];
+	string.split("").forEach(function(letter){
+		if(strObj[letter] === undefined){
+			strObj[letter] =1;
+		} else {
+			strObj[letter]++;
+		}		
+	})
+
+	for (var key in strObj) {
+		if (strObj[key] === 1) {
+			result.push(key);
+		}
+	}
+	if (result[0] === undefined) {
+		return "sorry";
+	} else {
+		return result[0];
+	}
+
+}
+firstNonRepeatedCharacter("ABCDBIRDUP");
+firstNonRepeatedCharacter("baba");
+
+
+function isPalindrome(str){
+	var counter = 0;
+	var index = 0;
+	var checker = true;
+	str.split("").map(function(element){
+		counter ++;
+		element = str[str.length-counter];
+		return element;
+	}).filter(function(element){
+		if(element !== str[index]){
+			checker = false;
+		}
+		index++;		
+	})
+	return checker;
+}
+
+isPalindrome("kayakt")
+
+
+function isPalindrome(str){
+	var counter = 0;
+	var index = 0;
+	var checker = true;
+	str.split("").map(function(element){
+		counter ++;
+		element = str[str.length-counter];
+		return element;
+	}).filter(function(element){
+		if(element !== str[index]){
+			checker = false;
+		}
+		index++;		
+	})
+	return checker;
+}
+
+isPalindrome("kayakt")
+
+
+
+function zeroSum (numbers) {
+	var checker = false;
+	var count = 0;
+	numbers.filter(function(num){
+		if (num ===0) {
+			count++;
+		}
+		if (count >=2){
+			checker = true;
+		}
+		return checker;
+	})
+
+	var neg = numbers.filter(function(num){
+		if(num <0) {
+			return num;
+		}
+	})
+	console.log(neg)
+	numbers.reduce(function(accValue,currentValue){
+		if (currentValue+neg[0] === 0){
+			checker = true;
+		}
+		return checker;
+	},false)
+	return checker;
+}
+zeroSum([1,-3,0,0]);
+
+
+function zeroSum (numbers) {
+	var checker = false;
+	for(var i = 0; i < numbers.length; i++){ // i === 3
+		for(var j = i+1; j < numbers.length; j++){ // j === 4
+			if (numbers[i] + numbers[j] === 0 ){
+				checker = true;
+			}
+
+		}
+		
+	}
+	return checker;
+}
+zeroSum([1,-3,32,0]);
+
+
+var each = function(collection,callback){
+	if(Array.isArray(collection)) {
+		for(var i = 0; i< collection. length; i++){
+			callback(collection[i]);
+		}
+	} else {
+		for(var key in collection){
+			callback(collection[key]);
+		}
+	}
+}
+
+var map = function(collection, callback) {
+	var results= [];
+	each(collection,function(element){
+		results.push(callback(element));
+	})
+	return results;
+}
+
+var filter = function(collection,predicate){
+	var results=[];
+	each(collection,function(element){
+		if(predicate(element)){
+			results.push(element);
+		}
+	})
+	return results;
+}
+
+var reduce = function(collection,accumulator,accValue){
+	each(collection,function(currentValue){
+		if(accValue === undefined){
+			accValue = currentValue;
+		} else {
+			accValue= accumulator(accValue, currentValue); 
+		}
+	})
+	return accValue; 
+}
+
+var contains = function(collection,target) {
+	return reduce(collection,function(accValue,currentValue){
+		if(currentValue === target){
+			accValue = true;
+		}
+		return accValue;
+	},false)
+}
+
+
+function test (obj){
+	var results=[];
+	for (var key in obj){
+		if(typeof obj[key] === "object"){
+			results.push(key);
+		}
+	}
+	return results;
+}
+
+
+for (var i = 7; i <= 25; i+=2) {
+	console.log(i)
+}
+
+
+function arrayception (array) {
+	// for loop 
+	// check how mnay levels 
+	// return the greatest number 
+
+	var level = 0; 
+	var highestLevel = 0; 
+	for (var i = 0; i< array.length; i++){
+		if(typeof array[i] === "number" ){
+			return 1; 
+		} else {
+			level ++; //1
+			return level += arrayception(array[i]);
+		}
+		if(highestLevel < level){
+			highestLevel = level;
+		}
+	}
+	return highestLevel; 
+}
+
+//arrayception([ [ 5 ], [ [ ] ] ]); 
+//arrayception([ 10, 20, 30, 40 ]);
+//arrayception([ [ 10, 20 ], [ [ 30, [ 40 ] ] ] ]);
+arrayception( [[ [ ] ] ]);
+
+
+
+function arrayception (array) {
+
+	if(!Array.isArray(array)){
+		return 0;
+	}
+	if(array.length === 0){
+		return -1;
+	}
+
+	var highestLevel = -1; 
+	for (var i = 0; i< array.length; i++){
+		var level = arrayception(array[i]);
+		if(highestLevel < level){
+			highestLevel = level;
+		}
+	}
+	return highestLevel+1; 
+}
+
+arrayception([ [ 5 ], [ [ ] ] ]); 
+//arrayception([ 10, 20, 30, 40 ]);
+//arrayception([ [ 10, 20 ], [ [ 30, [ 40 ] ] ] ]);
+arrayception( [[ [ ] ] ]);
+
+
+
+function longestPalindrome(string){
+	var reversedStr = "";
+	for(var i =string.length-1; i>=0; i--) {
+		reversedStr += string[i];
+	}
+	var index = -1;
+
+	return reversedStr.split("").reduce(function(accValue,currentValue){
+		index++; 
+		console.log(string[index]);
+		if(currentValue === string[index]){
+
+			accValue += currentValue; 
+		}
+		return accValue;
+	},"")
+
+}
+longestPalindrome("is a racecar");
+
+
+
+function longestPalindrome(string){
+	var reversedStr = "";
+	for(var i =string.length-1; i>=0; i--) {
+		reversedStr += string[i];
+	}
+	var index = -1;
+	var strArr = string.split("");
+
+	return reversedStr.split("").reduce(function(accValue,currentValue){
+		index++; 
+		console.log(strArr[index]);
+		if(currentValue === strArr[index]){
+
+			accValue += currentValue; 
+		}
+		return accValue;
+	},"")
+
+}
+longestPalindrome("aibohphobia");
+
+
+
+function longestPalindrome(string){
+	var reversedStr = "";
+	var strArr = string.split(" ");
+	for (var i = 0; i < strArr ; i++){
+		for(var j =strArr[i].length-1; j>=0; j--) {
+			reversedStr += string[j];
+		}
+		reversedStr += " ";
+	}
+	
+	console.log(reversedStr)
+	
+	var index = -1;
+	var strArr = string.split("");
+
+	return reversedStr.split("").reduce(function(accValue,currentValue){
+		index++; 
+		console.log(strArr[index]);
+		if(currentValue === strArr[index]){
+
+			accValue += currentValue; 
+		}
+		return accValue;
+	},"")
+
+}
+longestPalindrome("aibohphobia");
