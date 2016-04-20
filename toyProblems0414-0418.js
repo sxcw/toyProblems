@@ -314,3 +314,125 @@ else return 0;
 // *****=========================================
 // http://www.codewars.com/kata/unique-in-order
 
+var uniqueInOrder = function(iterable){
+	if (iterable.length === 0){
+		return [];
+	}
+	var count = 0;
+  	return [].reduce.call(iterable,function(accValue,currentValue){
+	  	count++;
+	  	if (iterable[count] === undefined){
+	  		return accValue;
+	  	}
+	  	if (currentValue !== iterable[count]){
+	  		accValue.push(iterable[count]); 
+	  	}
+	  	return accValue;
+
+	  },[iterable[count]])
+}
+
+uniqueInOrder('AAAABBBCCDAABBB'); // ['A', 'B', 'C', 'D', 'A', 'B']
+
+var uniqueInOrder = function(iterable){
+	return [].reduce.call(iterable,function(a,b){
+		console.log(a[a.length-1]);
+		console.log(b)
+		if(a[a.length-1] !== b){
+			a.push(b);
+		}
+		return a;
+	},[])
+}
+uniqueInOrder('AAAABBBCCDAABBB'); 
+
+
+// other solution
+function uniqueInOrder(it) {
+  var result = []
+  var last
+  
+  for (var i = 0; i < it.length; i++) {
+    if (it[i] !== last) {
+      result.push(last = it[i])
+    }
+  }
+  
+  return result
+}
+
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// *****=========================================
+//http://www.codewars.com/kata/harshad-or-niven-numbers
+
+/**
+ * Utility class for Harshad numbers (also called Niven numbers).
+ *
+ * @namespace Harshad
+ */
+
+var Harshad = ( function() {
+  'use strict';
+
+  return {
+    /**
+     * Returns true when the given number is a valid Harshad number.
+     *
+     * @param {Number} number The given number
+     * @returns {Boolean}
+     * @function Harshad.isValid
+     */
+    isValid: function( number ) {
+      // Your implementation goes here
+      var result = 0;
+      number.toString().split("").forEach(function(element){
+      	 	result += Number(element);
+      });
+      return number % result === 0 ? true: false; 
+    },
+    /**
+     * Gets the next Harshad number after the given number.
+     *
+     * @param {Number} number The given number
+     * @returns {Number}
+     * @function Harshad.getNext
+     */
+    getNext: function( number ) {
+      // Your implementation goes here
+      do{
+      		number++;
+      } while(!this.isValid(number));
+      return number;
+
+    },
+    /**
+     * Returns the suite of Harshad numbers, starting after a given number.
+     *
+     * @param {Number} count The number of elements to return
+     * @param {Number} start The number after which the serie should start;
+     *  defaults to 0
+     * @returns {Array}
+     * @function Harshad.getSerie
+     */
+    getSerie: function( count, start ) {
+      // Your implementation goes here
+     if (start === undefined) {
+      	start = 0;
+      }
+      var result = [];
+      for (var i = 0; i < count; i++){
+      	result.push(this.getNext(start));
+      	start = result[i];
+      }
+      return result;
+    }
+  };
+
+} () );
+
+//Harshad.isValid(23);
+//Harshad.getNext(28);
+Harshad.getSerie(10);
