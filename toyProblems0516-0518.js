@@ -186,7 +186,214 @@ titleCase('THE WIND IN THE WILLOWS','The In') // The Wind in the Willows
 
 
 
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// http://www.codewars.com/kata/calculating-with-functions  
 
+function zero(func) {
+  var num1 = 0; 
+  if(func!== undefined){
+    return func(num1);
+  } else {return num1}
+}
+function one(func) {
+  var num1 = 1; 
+  if(func!== undefined){
+    return func(num1);
+  } else {return num1}
+}
+function two(func) {
+  var num1 = 2; 
+  if(func!== undefined){
+    return func(num1);
+  } else {return num1}
+}
+function three(func) {
+  var num1 = 3; 
+  if(func!== undefined){
+    return func(num1);
+  } else {return num1}
+}
+function four(func) {
+  var num1 = 4; 
+  if(func!== undefined){
+    return func(num1);
+  } else {return num1}
+}
+function five(func) {
+  var num1 = 5; 
+  if(func!== undefined){
+    return func(num1);
+  } else {return num1}
+}
+function six(func) {
+  var num1 = 6; 
+  if(func!== undefined){
+    return func(num1);
+  } else {return num1}
+}
+function seven(func) {
+  var num1 = 7; 
+  if(func!== undefined){
+    return func(num1);
+  } else {return num1}
+}
+function eight(func) {
+  var num1 = 8; 
+  if(func!== undefined){
+    return func(num1);
+  } else {return num1}
+}
+function nine(func) {
+  var num1 = 9; 
+  if(func!== undefined){
+    return func(num1);
+  } else {return num1}
+}
+function plus(num1) { 
+  return function(num2){
+    return num2+num1;
+  }
+}
+function minus(num1) { 
+  return function(num2){
+    return num2-num1;
+  }
+}
+function times(num1) {
+  return function(num2){
+    return num2*num1;
+  }
+}
+function dividedBy(num1) {
+  return function(num2){
+    return num2/num1;
+  }
+}
+eight(minus(three()))
+seven(times(seven()));
+seven(times(five())); // must return 35
+four(plus(nine())); // must return 13
+eight(minus(three())); // must return 5
+six(dividedBy(two())); // must return 3
+
+//other solution
+var n = function(digit) {
+  return function(op) {
+    return op ? op(digit) : digit;
+  }
+};
+var zero = n(0);
+var one = n(1);
+var two = n(2);
+var three = n(3);
+var four = n(4);
+var five = n(5);
+var six = n(6);
+var seven = n(7);
+var eight = n(8);
+var nine = n(9);
+
+function plus(r) { return function(l) { return l + r; }; }
+function minus(r) { return function(l) { return l - r; }; }
+function times(r) { return function(l) { return l * r; }; }
+function dividedBy(r) { return function(l) { return l / r; }; }
+
+
+
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// http://www.codewars.com/kata/memoized-fibonacci
+
+var fibonacci = function(n) {
+  var resultObj = {};
+  function helper(n){
+    if(n==0 || n == 1) {
+        return n;
+      }
+    if (resultObj[n]=== undefined) { 
+      resultObj[n] = helper(n-1) + helper(n-2);     
+    }
+    console.log(resultObj);
+    return resultObj[n];     
+  }
+  helper(n);
+  return resultObj[n];  
+}
+
+// refactored version
+var fibonacci = function(n) {
+  var resultObj = {0:0,1:1};
+  function helper(n){
+    if (resultObj[n]=== undefined) { 
+      resultObj[n] = helper(n-1) + helper(n-2);     
+    }
+    return resultObj[n];     
+  }
+  return helper(n);  
+}
+
+fibonacci(5)
+
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// *****=========================================
+// http://www.codewars.com/kata/a-chain-adding-function
+
+
+function add(n){
+  return function(next){
+    return n +next
+  }
+}
+function add(n){
+  function helper(next){
+    return n +next
+  }
+  return helper(next)
+}
+
+function add(n){
+  return function(next){
+    if(next === undefined){
+      return n;
+    }
+    return add(n+next);
+  }
+}
+
+function add(n){
+  function helper(next){
+    if(next === undefined){
+      return n;
+    }
+    return helper(n+next);
+  }
+  return helper()
+}
+
+function add(n){
+  function helper(next){
+    if(next === undefined){
+      return n;
+    }
+    return helper(n+next);
+  }
+  return helper()
+}
+
+add(1)(2)
+add(1)(2)(3); // 6
+add(1)(2)(3)(4); // 10
+add(1)(2)(3)(4)(5); // 15
 
 
 
